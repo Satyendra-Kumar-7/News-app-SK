@@ -10,9 +10,7 @@ const NewsBoard = ({ category, country, source }) => {
       try {
         const apiKey = import.meta.env.VITE_API_KEY; 
         const pageSize = 50;
-        let url = source 
-          ? `https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${apiKey}`
-          : `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&pageSize=${pageSize}&apiKey=${apiKey}`;
+        let url = `https://data.twingly.net/news/b/livefeed/v1/feed?apikey=${import.meta.env.VITE_API_KEY}`
         
         const response = await fetch(url);
         const data = await response.json();
