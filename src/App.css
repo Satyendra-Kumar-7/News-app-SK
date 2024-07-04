@@ -1,0 +1,18 @@
+.navbar {
+  background-color: #e9ecef;
+}
+
+body {
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.light-mode {
+  background-color: #ffffff;
+  color: #000000;
+}
+
