@@ -8,10 +8,9 @@ const NewsBoard = ({ category, country, source }) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const apiKey = import.meta.env.VITE_API_KEY; 
-        const pageSize = 50;
-        let url = `https://data.twingly.net/news/b/livefeed/v1/feed?apikey=${import.meta.env.VITE_API_KEY}`
-        
+        const apiKey = import.meta.env.VITE_API_KEY;
+        const url = `https://gnews.io/api/v4/search?q=example&lang=en&country=us&max=10&apikey=${apiKey}`;
+
         const response = await fetch(url);
         const data = await response.json();
 
@@ -20,9 +19,8 @@ const NewsBoard = ({ category, country, source }) => {
           console.log("Articles data: ", data.articles);
         }
 
-        const filteredArticles = data.articles.filter(article => 
-          article.title && 
-          !article.title.toLowerCase().includes("removed")
+        const filteredArticles = data.articles.filter(article =>
+          article.title && !article.title.toLowerCase().includes("removed")
         );
 
         console.log("Filtered articles: ", filteredArticles);
@@ -33,7 +31,7 @@ const NewsBoard = ({ category, country, source }) => {
     };
 
     fetchNews();
-  }, [category, country, source]);
+  }, []); 
 
   return (
     <div className="container mt-4">
@@ -45,8 +43,7 @@ const NewsBoard = ({ category, country, source }) => {
               <NewsItem
                 title={news.title}
                 description={news.description}
-                src={news.urlToImage}
-                url={news.url}
+                src={news.image}
               />
             </div>
           ))
@@ -61,3 +58,4 @@ const NewsBoard = ({ category, country, source }) => {
 };
 
 export default NewsBoard;
+
